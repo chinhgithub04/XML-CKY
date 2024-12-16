@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Hoas>
+  <Hoa>
+    <Id>2a3d543a-003c-4276-bb47-dcac4a701414</Id>
+    <Name>Hoa hồng đỏ</Name>
+    <Description>Tượng trưng cho tình yêu nồng nàn và đam mê, là lựa chọn lý tưởng cho những dịp tỏ tình hay lễ tình nhân.</Description>
+    <Price>35000</Price>
+    <StockQuantity>41</StockQuantity>
+    <LoaiHoaId>011e0e0e-229a-4197-a3fb-5b165087ce99</LoaiHoaId>
+    <Images>
+      <Image>
+        <Id>86d76c02-e3ff-4a14-b574-7c4a7198e784</Id>
+        <Url>/upload/638699873389316179.jpg</Url>
+      </Image>
+      <Image>
+        <Id>3a007641-4d39-4663-ad86-270b055c4586</Id>
+        <Url>/upload/638699873389450445.jpg</Url>
+      </Image>
+    </Images>
+  </Hoa>
+  <Hoa>
+    <Id>6087e78e-b96f-488f-a505-2645c1b3494f</Id>
+    <Name>Hoa hồng vàng</Name>
+    <Description>Mang thông điệp về tình bạn chân thành và sự vui vẻ, là lựa chọn tuyệt vời cho các dịp chúc mừng, sinh nhật.</Description>
+    <Price>44000</Price>
+    <StockQuantity>24</StockQuantity>
+    <LoaiHoaId>011e0e0e-229a-4197-a3fb-5b165087ce99</LoaiHoaId>
+    <Images>
+      <Image>
+        <Id>f014e515-bac5-43bb-b196-1091b2520ce5</Id>
+        <Url>/upload/638699874140557525.jpg</Url>
+      </Image>
+      <Image>
+        <Id>8cdca7f7-ff93-4dd6-89f4-221df640851d</Id>
+        <Url>/upload/638699874140643594.jpg</Url>
+      </Image>
+      <Image>
+        <Id>c999888c-558d-4ea2-8ea8-617ffb453a30</Id>
+        <Url>/upload/638699874140665097.jpg</Url>
+      </Image>
+    </Images>
+  </Hoa>
+  <Hoa>
+    <Id>27cd800d-8a8f-4573-a528-e8a4ebc8fb0a</Id>
+    <Name>Hoa cúc trắng</Name>
+    <Description>Biểu hiện của sự tinh khiết, chân thành và tình yêu bền vững. Hoa cúc trắng thường được sử dụng trong các buổi lễ, sự kiện kỷ niệm, hoặc là món quà để thể hiện lòng kính trọng.</Description>
+    <Price>96000</Price>
+    <StockQuantity>130</StockQuantity>
+    <LoaiHoaId>2be5fbb3-726f-4cdf-8c49-17e38ed32767</LoaiHoaId>
+    <Images>
+      <Image>
+        <Id>ba176c07-f211-4ce0-825a-fc370dc57662</Id>
+        <Url>/upload/638699874997725610.jpg</Url>
+      </Image>
+      <Image>
+        <Id>d78974d9-9b86-4f8f-9318-8bc11a268cb0</Id>
+        <Url>/upload/638699874997759578.jpg</Url>
+      </Image>
+    </Images>
+  </Hoa>
+  <Hoa>
+    <Id>95bcb5b4-925b-48ad-b284-42695203b1ba</Id>
+    <Name>Hoa cúc vàng</Name>
+    <Description>Tượng trưng cho sự trường thọ, may mắn và niềm vui. Đây là món quà ý nghĩa trong các dịp lễ tết, chúc mừng thành công hay tặng người thân yêu.</Description>
+    <Price>99000</Price>
+    <StockQuantity>6</StockQuantity>
+    <LoaiHoaId>2be5fbb3-726f-4cdf-8c49-17e38ed32767</LoaiHoaId>
+    <Images>
+      <Image>
+        <Id>1a8fb770-2a77-4981-8ca6-9cac8c2a4da2</Id>
+        <Url>/upload/638699875553819125.jpg</Url>
+      </Image>
+    </Images>
+  </Hoa>
+</Hoas>

@@ -1,0 +1,92 @@
+﻿@model BTCK_CNXML.Areas.Client.ViewModels.AccountVM
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+    <div class="card-body" style="background: #ffffff; padding: 30px; border-radius: 20px; display: flex; flex-direction: column; align-items: center;">
+
+        <!-- Avatar -->
+        <div class="avatar-container" style="margin-bottom: 20px;">
+            <img src="@Model.User.AvatarUrl" alt="Avatar" class="img-thumbnail rounded-circle" style="width: 180px; height: 180px; object-fit: cover; border: 5px solid #ffffff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+        </div>
+
+        <!-- Form thông tin người dùng -->
+        <div class="form-container w-100">
+            <div class="d-flex flex-column align-items-start w-100">
+                <!-- Tên -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Tên</label>
+                    <p class="form-control-plaintext" style="font-size: 1.1rem; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">@Model.User.Name</p>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Email</label>
+                    <p class="form-control-plaintext" style="font-size: 1.1rem; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">@Model.User.Email</p>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Số điện thoại</label>
+                    <p class="form-control-plaintext" style="font-size: 1.1rem; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">@Model.User.PhoneNumber</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút Cập nhật thông tin -->
+        <div class="d-flex justify-content-center w-100 mt-4">
+            <a href="/Client/Account/UpdateProfile" class="btn btn-gradient text-white px-5 py-3 rounded-pill" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); font-weight: bold;">Cập nhật thông tin</a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control-plaintext {
+        background-color: transparent;
+        border: none;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .avatar-container {
+        width: 180px;
+        height: 180px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+        margin-top: 15px; 
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control-plaintext {
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .d-flex.justify-content-center {
+        justify-content: center;
+        width: 100%;
+    }
+</style>

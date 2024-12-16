@@ -1,0 +1,129 @@
+﻿@model BTCK_CNXML.Models.Hoa
+
+@{
+    ViewData["Title"] = "Chi Tiết Hoa";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+    <div class="card-body" style="background: #ffffff; padding: 30px; border-radius: 20px; display: flex; flex-direction: column; align-items: center;">
+
+        <!-- Thông tin hoa -->
+        <div class="form-container w-100">
+            <div class="d-flex flex-column align-items-start w-100">
+                <!-- Tên -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Tên</label>
+                    <p class="form-control-plaintext">@Model.Name</p>
+                </div>
+
+                <!-- Mô tả -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Mô tả</label>
+                    <p class="form-control-plaintext">@Model.Description</p>
+                </div>
+
+                <!-- Giá -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Giá</label>
+                    <p class="form-control-plaintext">@Model.Price</p>
+                </div>
+
+                <!-- Số lượng tồn kho -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Số lượng tồn kho</label>
+                    <p class="form-control-plaintext">@Model.StockQuantity</p>
+                </div>
+
+                <!-- Loại hoa -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Loại hoa</label>
+                    <p class="form-control-plaintext">@Model.loaiHoa.Name</p>
+                </div>
+
+                <!-- Hình ảnh -->
+                <div class="mb-2 w-100">
+                    <label class="form-label fw-bold text-muted" style="font-size: 1rem;">Hình ảnh</label>
+                    <div class="d-flex flex-wrap">
+                        @if (Model.Images != null && Model.Images.Any())
+                        {
+                            @foreach (var image in Model.Images)
+                            {
+                                <div class="avatar-container m-2">
+                                    <img src="@Url.Content(image.Url)" alt="Hình ảnh hoa" class="avatar-img" />
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="form-control-plaintext">Chưa có hình ảnh</p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nút Chỉnh sửa và Quay lại -->
+            <div class="d-flex justify-content-between w-100 mt-4">
+                <a href="/Admin/Hoa/Edit/@Model.Id" class="btn btn-primary text-white px-5 py-3 rounded-pill" style="font-weight: bold;">Chỉnh sửa</a>
+                <a href="/Admin/Hoa/Index" class="btn btn-secondary text-white px-5 py-3 rounded-pill" style="font-weight: bold;">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control-plaintext {
+        background-color: transparent;
+        border: none;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .avatar-container {
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .form-container {
+        margin-top: 15px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control-plaintext {
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .d-flex.justify-content-center {
+        justify-content: center;
+        width: 100%;
+    }
+</style>

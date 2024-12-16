@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LoaiHoas>
+  <LoaiHoa>
+    <Id>011e0e0e-229a-4197-a3fb-5b165087ce99</Id>
+    <Name>Hoa hồng</Name>
+    <Description>Hoa hồng là loài hoa biểu tượng của tình yêu, sự quý phái và vẻ đẹp vĩnh cửu. Chúng tôi cung cấp đa dạng các loại hoa hồng với màu sắc và kiểu dáng phong phú, phù hợp với mọi dịp lễ và sự kiện đặc biệt.</Description>
+  </LoaiHoa>
+  <LoaiHoa>
+    <Id>2be5fbb3-726f-4cdf-8c49-17e38ed32767</Id>
+    <Name>Hoa cúc</Name>
+    <Description>Hoa cúc là loài hoa gắn liền với sự tươi mới, thanh khiết và biểu tượng của sự trường thọ. Với vẻ đẹp giản dị nhưng đầy sức sống, hoa cúc là lựa chọn hoàn hảo cho nhiều dịp khác nhau, từ những buổi tiệc, sinh nhật, đến các dịp lễ trang trọng hay thậm chí là những khoảnh khắc tưởng nhớ.</Description>
+  </LoaiHoa>
+  <LoaiHoa>
+    <Id>55e8e057-13b1-4da9-b787-71618d868084</Id>
+    <Name>Hoa sen</Name>
+    <Description>Hoa sen, với vẻ đẹp thanh tao và ý nghĩa sâu sắc, là biểu tượng của sự tinh khiết, thanh thoát và sự bình an. Được biết đến rộng rãi trong văn hóa Á Đông, hoa sen là loài hoa mang lại cảm giác yên bình, hòa hợp và là món quà đầy ý nghĩa trong các dịp lễ, kỷ niệm hay những khoảnh khắc đặc biệt.</Description>
+  </LoaiHoa>
+  <LoaiHoa>
+    <Id>c74c99f2-e91f-4384-9188-3fdd99a70658</Id>
+    <Name>Hoa súng</Name>
+    <Description>Hoa súng mua tặng trong các dịp lễ</Description>
+  </LoaiHoa>
+</LoaiHoas>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Clients>
+  <Client>
+    <Id>638698072269752932</Id>
+    <Name>Nguyễn Đức Chinh</Name>
+    <Email>client@gmail.com</Email>
+    <PhoneNumber>0915146847</PhoneNumber>
+    <Password>123456</Password>
+    <AvatarUrl>/upload/638699877072934225.jpg</AvatarUrl>
+    <Orders>
+      <Order>
+        <Id>fa125894-5315-4c07-84eb-d41a980795f5</Id>
+        <HoaId>2a3d543a-003c-4276-bb47-dcac4a701414</HoaId>
+        <Quantity>5</Quantity>
+        <TotalPrice>175</TotalPrice>
+        <OrderDate>2024-12-16T23:13:51.9225253+07:00</OrderDate>
+        <Status>2</Status>
+        <DeliveryDate>2024-12-16T23:21:21.240885+07:00</DeliveryDate>
+      </Order>
+      <Order>
+        <Id>58c6cf81-8ac7-419d-b04b-0e031ea65776</Id>
+        <HoaId>6087e78e-b96f-488f-a505-2645c1b3494f</HoaId>
+        <Quantity>9</Quantity>
+        <TotalPrice>396</TotalPrice>
+        <OrderDate>2024-12-16T23:14:50.3535117+07:00</OrderDate>
+        <Status>3</Status>
+      </Order>
+      <Order>
+        <Id>d8623048-d870-4cf8-99bc-cab88958fd0f</Id>
+        <HoaId>2a3d543a-003c-4276-bb47-dcac4a701414</HoaId>
+        <Quantity>3</Quantity>
+        <TotalPrice>105</TotalPrice>
+        <OrderDate>2024-12-16T23:25:52.5234629+07:00</OrderDate>
+        <Status>2</Status>
+        <DeliveryDate>2024-12-16T23:26:34.3984232+07:00</DeliveryDate>
+      </Order>
+      <Order>
+        <Id>fb5d5225-f4a0-4303-a1a7-63be001ee952</Id>
+        <HoaId>95bcb5b4-925b-48ad-b284-42695203b1ba</HoaId>
+        <Quantity>4</Quantity>
+        <TotalPrice>396</TotalPrice>
+        <OrderDate>2024-12-16T23:26:08.1083694+07:00</OrderDate>
+        <Status>3</Status>
+      </Order>
+      <Order>
+        <Id>57716993-6a0b-4423-9ca7-801a3ad5f319</Id>
+        <HoaId>2a3d543a-003c-4276-bb47-dcac4a701414</HoaId>
+        <Quantity>1</Quantity>
+        <TotalPrice>35000</TotalPrice>
+        <OrderDate>2024-12-16T23:37:05.3401251+07:00</OrderDate>
+        <Status>1</Status>
+      </Order>
+    </Orders>
+  </Client>
+  <Client>
+    <Id>b976d17e-a14c-4491-9425-2ad30d93c94b</Id>
+    <Name>Nguyễn Đức Chinh</Name>
+    <Email>client2@gmail.com</Email>
+    <PhoneNumber>0376913263</PhoneNumber>
+    <Password>123456</Password>
+    <AvatarUrl>/upload/638699883232340735.png</AvatarUrl>
+  </Client>
+</Clients>

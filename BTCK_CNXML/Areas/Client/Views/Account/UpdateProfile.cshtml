@@ -1,0 +1,198 @@
+﻿@model BTCK_CNXML.Areas.Client.ViewModels.AccountVM
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+    <div class="card-body" style="background: #ffffff; padding: 30px; border-radius: 20px; display: flex; flex-direction: column; align-items: center;">
+
+        <!-- Form thông tin người dùng -->
+        <div class="form-container w-100" id="updateProfile">
+            <form id="updateProfileForm" enctype="multipart/form-data">
+                <div class="d-flex flex-column align-items-start w-100">
+                    <!-- Tên -->
+                    <div class="mb-2 w-100">
+                        <label for="Name" class="form-label fw-bold text-muted" style="font-size: 1rem;">Tên</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.User.Name" required>
+                        <div class="invalid-feedback" id="NameError"></div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-2 w-100">
+                        <label for="Email" class="form-label fw-bold text-muted" style="font-size: 1rem;">Email</label>
+                        <input type="email" class="form-control" id="Email" name="Email" value="@Model.User.Email" required>
+                        <div class="invalid-feedback" id="EmailError"></div>
+                    </div>
+
+                    <!-- Số điện thoại -->
+                    <div class="mb-2 w-100">
+                        <label for="PhoneNumber" class="form-label fw-bold text-muted" style="font-size: 1rem;">Số điện thoại</label>
+                        <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.User.PhoneNumber" required>
+                        <div class="invalid-feedback" id="PhoneNumberError"></div>
+                    </div>
+
+                    <!-- Upload Avatar -->
+                    <div class="mb-2 w-100">
+                        <label for="AvatarFile" class="form-label fw-bold text-muted" style="font-size: 1rem;">Upload Avatar</label>
+                        <input type="file" class="form-control" id="AvatarFile" name="AvatarFile">
+                        <div class="invalid-feedback" id="AvatarFileError"></div>
+                    </div>
+
+                    <!-- Link Đổi mật khẩu -->
+                    <div class="mb-2 w-100 text-start">
+                        <a href="#changePassword" class="btn btn-link" id="showChangePassword">Đổi mật khẩu</a>
+                    </div>
+                </div>
+
+                <!-- Nút Cập nhật thông tin -->
+                <div class="d-flex justify-content-between w-100 mt-4">
+                    <a href="/Client/Account/Index" class="btn btn-secondary text-white px-5 py-3 rounded-pill" style="font-weight: bold;">Hủy</a>
+                    <button type="button" class="btn btn-gradient text-white px-5 py-3 rounded-pill" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); font-weight: bold;" onclick="submitUpdateProfileForm()">Cập nhật</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Form đổi mật khẩu -->
+        <div class="form-container w-100" id="changePassword" style="display:none;">
+            <form id="changePasswordForm">
+                <div class="d-flex flex-column align-items-start w-100">
+                    <!-- Mật khẩu cũ -->
+                    <div class="mb-2 w-100">
+                        <label for="OldPassword" class="form-label fw-bold text-muted" style="font-size: 1rem;">Mật khẩu cũ</label>
+                        <input type="password" class="form-control" id="OldPassword" name="OldPassword" required>
+                        <div class="invalid-feedback" id="OldPasswordError"></div>
+                    </div>
+
+                    <!-- Mật khẩu mới -->
+                    <div class="mb-2 w-100">
+                        <label for="NewPassword" class="form-label fw-bold text-muted" style="font-size: 1rem;">Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="NewPassword" name="NewPassword" required>
+                        <div class="invalid-feedback" id="NewPasswordError"></div>
+                    </div>
+
+                    <!-- Xác nhận mật khẩu mới -->
+                    <div class="mb-2 w-100">
+                        <label for="ConfirmNewPassword" class="form-label fw-bold text-muted" style="font-size: 1rem;">Xác nhận mật khẩu mới</label>
+                        <input type="password" class="form-control" id="ConfirmNewPassword" name="ConfirmNewPassword" required>
+                        <div class="invalid-feedback" id="ConfirmNewPasswordError"></div>
+                    </div>
+                </div>
+
+                <!-- Nút Đổi mật khẩu -->
+                <div class="d-flex justify-content-between w-100 mt-4">
+                    <a href="#updateProfile" class="btn btn-secondary text-white px-5 py-3 rounded-pill" style="font-weight: bold;" id="showUpdateProfile">Hủy</a>
+                    <button type="button" class="btn btn-gradient text-white px-5 py-3 rounded-pill" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); font-weight: bold;" onclick="submitChangePasswordForm()">Đổi mật khẩu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#showChangePassword').click(function (e) {
+                e.preventDefault();
+                $('#updateProfile').hide();
+                $('#changePassword').show();
+            });
+
+            $('#showUpdateProfile').click(function (e) {
+                e.preventDefault();
+                $('#changePassword').hide();
+                $('#updateProfile').show();
+            });
+        });
+
+        function submitUpdateProfileForm() {
+            var formData = new FormData(document.getElementById('updateProfileForm'));
+            $.ajax({
+                url: '/Client/Account/UpdateProfile',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    window.location.href = '/Client/Account/Index';
+                },
+                error: function (error) {
+                    alert('Error updating profile');
+                }
+            });
+        }
+
+        function submitChangePasswordForm() {
+            // Clear previous error messages
+            $('.invalid-feedback').text('').hide();
+
+            var formData = new FormData(document.getElementById('changePasswordForm'));
+            $.ajax({
+                url: '/Client/Account/ChangePassword',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        alert('Password changed successfully');
+                        window.location.href = '/Client/Account/Index';
+                    } else {
+                        $('#' + response.field + 'Error').text(response.message).show();
+                    }
+                },
+                error: function (error) {
+                    alert('Error changing password');
+                }
+            });
+        }
+    </script>
+}
+
+<style>
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control-plaintext {
+        background-color: transparent;
+        border: none;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .avatar-container {
+        width: 180px;
+        height: 180px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+        margin-top: 15px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control-plaintext {
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .d-flex.justify-content-center {
+        justify-content: center;
+        width: 100%;
+    }
+</style>

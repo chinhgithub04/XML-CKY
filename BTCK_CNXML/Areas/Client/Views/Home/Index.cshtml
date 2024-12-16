@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BTCK_CNXML.Areas.Client.ViewModels.HoaVM>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row pd-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <img src="@product.ImgUrl" class="card-img-top rounded" alt="@product.Name" />
+                        <div class="card-body pd-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Name</p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark opacity-75 text-center">
+                                    <span>
+                                        @product.Price.ToString("c")
+                                    </span>
+                                </p>
+                                <p class="text-dark opacity-75 text-center">
+                                    <span>
+                                        Số lượng còn lại: @product.StockQuantity
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="/Client/Home/Detail/@product.Id" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,144 @@
+﻿@model BTCK_CNXML.Areas.Admin.ViewModels.HoaCreateVM
+
+@{
+    ViewData["Title"] = "Thêm hoa";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+    <div class="card-body" style="background: #ffffff; padding: 30px; border-radius: 20px; display: flex; flex-direction: column; align-items: center;">
+
+        <!-- Form thông tin hoa -->
+        <div class="form-container w-100" id="createHoa">
+            <form asp-action="Create" method="post" enctype="multipart/form-data" autocomplete="off">
+                <div class="d-flex flex-column align-items-start w-100">
+                    @* Hiển thị lỗi tổng quát *@
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Tên -->
+                    <div class="mb-2 w-100">
+                        <label for="Name" class="form-label fw-bold text-muted" style="font-size: 1rem;">Tên</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required autocomplete="off">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <!-- Mô tả -->
+                    <div class="mb-2 w-100">
+                        <label for="Description" class="form-label fw-bold text-muted" style="font-size: 1rem;">Mô tả</label>
+                        <textarea class="form-control" id="Description" name="Description" rows="3">@Model.Description</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <!-- Giá -->
+                    <div class="mb-2 w-100">
+                        <label for="Price" class="form-label fw-bold text-muted" style="font-size: 1rem;">Giá</label>
+                        <input type="number" class="form-control" id="Price" name="Price" value="@Model.Price" required autocomplete="off">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <!-- Số lượng tồn kho -->
+                    <div class="mb-2 w-100">
+                        <label for="StockQuantity" class="form-label fw-bold text-muted" style="font-size: 1rem;">Số lượng tồn kho</label>
+                        <input type="number" class="form-control" id="StockQuantity" name="StockQuantity" value="@Model.StockQuantity" required autocomplete="off">
+                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                    </div>
+
+                    <!-- Loại hoa -->
+                    <div class="mb-2 w-100">
+                        <label for="LoaiHoaId" class="form-label fw-bold text-muted" style="font-size: 1rem;">Loại hoa</label>
+                        <select class="form-control" id="LoaiHoaId" name="LoaiHoaId" required>
+                            <option value="">Chọn loại hoa</option>
+                            @foreach (var loaiHoa in ViewBag.LoaiHoas)
+                            {
+                                <option value="@loaiHoa.Value">@loaiHoa.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="LoaiHoaId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Upload Hình ảnh -->
+                    <div class="mb-2 w-100" id="imageUploadContainer">
+                        <label for="Images" class="form-label fw-bold text-muted" style="font-size: 1rem;">Hình ảnh</label>
+                        <input type="file" class="form-control mb-2" id="Images" name="Images">
+                    </div>
+                    <button type="button" class="btn btn-primary mb-2" id="addImageButton">Thêm ảnh mới</button>
+                </div>
+
+                <!-- Nút Lưu -->
+                <div class="d-flex justify-content-between w-100 mt-4">
+                    <a href="/Admin/Hoa/Index" class="btn btn-secondary text-white px-5 py-3 rounded-pill" style="font-weight: bold;">Hủy</a>
+                    <button type="submit" class="btn btn-gradient text-white px-5 py-3 rounded-pill" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); font-weight: bold;">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control-plaintext {
+        background-color: transparent;
+        border: none;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .avatar-container {
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .form-container {
+        margin-top: 15px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control-plaintext {
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .d-flex.justify-content-center {
+        justify-content: center;
+        width: 100%;
+    }
+</style>
+
+<script>
+    document.getElementById('addImageButton').addEventListener('click', function () {
+        var container = document.getElementById('imageUploadContainer');
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'Images';
+        input.className = 'form-control mb-2';
+        container.appendChild(input);
+    });
+</script>

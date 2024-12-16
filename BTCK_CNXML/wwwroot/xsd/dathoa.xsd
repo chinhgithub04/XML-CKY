@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="DatHoas">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DatHoa" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Id" type="xs:string"/>
+							<xs:element name="HoaId" type="xs:string"/>
+							<xs:element name="UserId" type="xs:string"/>
+							<xs:element name="Status" type="xs:int"/>
+							<xs:element name="Total" type="xs:decimal"/>
+							<xs:element name="OrderDate" type="xs:dateTime"/>
+							<xs:element name="DeliveryDate" type="xs:dateTime"/>
+							<xs:element name="Quantity" type="xs:int"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

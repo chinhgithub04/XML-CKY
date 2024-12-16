@@ -1,0 +1,163 @@
+﻿@model BTCK_CNXML.Areas.Client.ViewModels.HoaVM
+
+<form method="post">
+    <div class="card shadow border-0 mt-4 mb-4">
+        <div class="card-header bg-secondary bg-gradient text-light py-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="text-white text-uppercase">@Model.Name</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="py-3">
+                <div class="row">
+                    <div class="col-6 col-md-2 offset-lg-1 pb-1">
+                        <a href="/Client/Home/Index" class="btn btn-outline-primary bg-gradient mb-5 fw-semibold btn-sm text-uppercase">
+                            <small>Trở về trang chủ</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                @for (int i = 0; i < Model.Images.Count; i++)
+                                {
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="true" aria-label="Slide @i"></button>
+                                }
+                            </div>
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < Model.Images.Count; i++)
+                                {
+                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                        <img src="@Model.Images[i]" class="d-block w-100" alt="...">
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 offset-lg-1">
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Giá:
+                                <span id="price">
+                                    @Model.Price.ToString("c")
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Số lượng còn lại:
+                                <span id="stockQuantity">
+                                    @Model.StockQuantity
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row pl-2 my-3">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Mô tả:
+                                <span>
+                                    @Model.Description
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row pl-2 mb-3">
+                            <div class="col-md-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary text-white border-0 fw-semibold"
+                                          id="inputGroup-sizing-default">
+                                        Số lượng
+                                    </span>
+                                    <input type="number" id="quantity" value="1" class="form-control text-end"
+                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="1" max="@Model.StockQuantity" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pl-2 mb-3">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                Tổng tiền:
+                                <span id="totalPrice">
+                                    @Model.Price.ToString("c")
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 pb-1">
+                                <button type="button" id="orderButton" class="btn btn-primary bg-gradient w-100 py-2 text-uppercase fw-semibold">
+                                    Đặt hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('quantity').addEventListener('input', function () {
+            var quantity = parseInt(this.value);
+            var price = parseFloat(document.getElementById('price').innerText.replace(/[^0-9.-]+/g,""));
+            var stockQuantity = parseInt(document.getElementById('stockQuantity').innerText);
+
+            if (quantity < 1) {
+                this.value = 1;
+                quantity = 1;
+            } else if (quantity > stockQuantity) {
+                this.value = stockQuantity;
+                quantity = stockQuantity;
+            }
+
+            var totalPrice = price * quantity;
+            document.getElementById('totalPrice').innerText = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        });
+
+        document.getElementById('orderButton').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn đặt hàng không?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Đặt hàng',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var quantity = parseInt(document.getElementById('quantity').value);
+                    var totalPrice = parseFloat(document.getElementById('totalPrice').innerText.replace(/[^0-9.-]+/g,""));
+                    var hoaId = '@Model.Id';
+
+                    fetch('/Client/Home/Order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            hoaId: hoaId,
+                            quantity: quantity,
+                            totalPrice: totalPrice
+                        })
+                    }).then(response => {
+                        if (response.ok) {
+                            Swal.fire('Đặt hàng thành công!', '', 'success').then(() => {
+                                window.location.href = '/Client/Home/Index';
+                            });
+                        } else {
+                            Swal.fire('Đặt hàng thất bại!', '', 'error');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

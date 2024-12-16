@@ -1,0 +1,217 @@
+﻿@using BTCK_CNXML.Areas.Admin.ViewModels
+@model OrderEditViewModel
+
+<div class="container mt-5">
+    <div class="card border-0 shadow-lg">
+        <div class="card-body">
+            <!-- Top Section: Order Date and Order ID -->
+            <div class="d-flex justify-content-between mb-4">
+                <span class="text-muted small">Ngày đặt hàng: @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                <span class="text-muted small">Mã đơn hàng: @Model.OrderId</span>
+            </div>
+
+            <!-- Main Section: Order Details -->
+            <form method="post" asp-action="Edit" asp-route-id="@Model.OrderId">
+                <!-- Order Information (User Details) -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto text-primary">Thông tin người dùng</legend>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Mã khách hàng</strong></label>
+                            <input class="form-control" value="@Model.UserId" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Tên khách hàng</strong></label>
+                            <input class="form-control" value="@Model.UserName" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Email</strong></label>
+                            <input class="form-control" value="@Model.Email" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Số điện thoại</strong></label>
+                            <input class="form-control" value="@Model.PhoneNumber" readonly />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Order Information -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto text-primary">Thông tin đơn hàng</legend>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Tên hoa</strong></label>
+                            <input class="form-control" value="@Model.HoaName" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Số lượng</strong></label>
+                            <input class="form-control" value="@Model.Quantity" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Trạng thái</strong></label>
+                            <select class="form-control" asp-for="Status">
+                                <option value="1">Đang giao</option>
+                                <option value="2">Đã giao</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Delivery Information -->
+                @if (Model.Status != 1)
+                {
+                    <fieldset class="border p-3 mb-4">
+                        <legend class="w-auto text-primary">Thông tin giao hàng</legend>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Ngày giao hàng</strong></label>
+                                <input class="form-control" value="@(Model.DeliveryDate?.ToString("dd/MM/yyyy"))" readonly />
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+
+                <!-- Total Price Section -->
+                <fieldset class="border p-3 mb-4">
+                    <legend class="w-auto text-primary">Tổng giá trị đơn hàng</legend>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Tổng tiền</strong></label>
+                            <!-- Hiển thị tổng tiền một cách nổi bật -->
+                            <div class="total-price">
+                                @Model.TotalPrice.ToString("c")
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between w-100 mt-4">
+                    <a href="@Url.Action("Index", "OrderManagement")" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Quay lại</a>
+                    <button type="submit" class="btn btn-primary text-white px-5 py-3 rounded-pill">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Định dạng chung */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .container {
+        max-width: 950px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 32px;
+        font-weight: 600;
+        color: #007bff;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+
+    fieldset {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    legend {
+        font-size: 18px;
+        font-weight: 600;
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .form-control {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+    }
+
+    /* Thêm CSS cho Tổng tiền */
+    .total-price {
+        font-size: 24px;
+        font-weight: 700;
+        color: #e74c3c; /* Màu đỏ để làm nổi bật */
+        text-align: left;
+        padding: 10px 0;
+        border-top: 2px solid #ddd;
+        margin-top: 10px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 12px 30px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-outline-danger {
+        border-color: #dc3545;
+        color: #dc3545;
+        background-color: transparent;
+    }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    /* Responsive */
+    media (max-width: 768px) {
+        .container
+
+    {
+        width: 90%;
+        padding: 15px;
+    }
+
+    }</style>

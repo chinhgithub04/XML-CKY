@@ -1,0 +1,84 @@
+﻿@model BTCK_CNXML.Areas.Admin.ViewModels.LoaiHoaVM
+
+@{
+    ViewData["Title"] = "Thêm Loại Hoa";
+}
+
+<div class="card shadow-lg" style="width: 100%; max-width: 800px; margin: 20px auto; border-radius: 20px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+    <div class="card-body" style="background: #ffffff; padding: 30px; border-radius: 20px; display: flex; flex-direction: column; align-items: center;">
+
+        <!-- Form thông tin loại hoa -->
+        <div class="form-container w-100" id="createLoaiHoa">
+            <form asp-action="Create" method="post" autocomplete="off">
+                <div class="d-flex flex-column align-items-start w-100">
+                    @* Hiển thị lỗi tổng quát *@
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Tên loại hoa -->
+                    <div class="mb-2 w-100">
+                        <label for="Name" class="form-label fw-bold text-muted" style="font-size: 1rem;">Tên loại hoa</label>
+                        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required autocomplete="off">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <!-- Mô tả -->
+                    <div class="mb-2 w-100">
+                        <label for="Description" class="form-label fw-bold text-muted" style="font-size: 1rem;">Mô tả</label>
+                        <textarea class="form-control" id="Description" name="Description" required>@Model.Description</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Nút Lưu -->
+                <div class="d-flex justify-content-between w-100 mt-4">
+                    <a href="/Admin/LoaiHoa/Index" class="btn btn-secondary text-white px-5 py-3 rounded-pill" style="font-weight: bold;">Hủy</a>
+                    <button type="submit" class="btn btn-gradient text-white px-5 py-3 rounded-pill" style="background: linear-gradient(90deg, #ff416c, #ff4b2b); font-weight: bold;">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gradient:hover {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control-plaintext {
+        background-color: transparent;
+        border: none;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .form-container {
+        margin-top: 15px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control-plaintext {
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .d-flex.justify-content-center {
+        justify-content: center;
+        width: 100%;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
